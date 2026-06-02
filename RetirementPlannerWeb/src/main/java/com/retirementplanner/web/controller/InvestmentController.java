@@ -1,6 +1,6 @@
 package com.retirementplanner.web.controller;
 
-import com.retirementplanner.core.model.InvestmentModel;
+import com.retirementplanner.core.model.InvestmentDto;
 import com.retirementplanner.core.service.InvestmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ public class InvestmentController {
     }
 
     @PostMapping
-    public ResponseEntity<InvestmentModel> createInvestment(@RequestBody InvestmentModel investment) {
-        InvestmentModel saved = investmentService.saveInvestment(investment);
+    public ResponseEntity<InvestmentDto> createInvestment(@RequestBody InvestmentDto investment) {
+        InvestmentDto saved = investmentService.saveInvestment(investment);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InvestmentModel> getInvestment(@PathVariable Long id) {
-        InvestmentModel inv = investmentService.getInvestmentById(id);
+    public ResponseEntity<InvestmentDto> getInvestment(@PathVariable Long id) {
+        InvestmentDto inv = investmentService.getInvestmentById(id);
         if (inv == null) {
             return ResponseEntity.notFound().build();
         }
@@ -33,8 +33,7 @@ public class InvestmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<InvestmentModel>> getAllInvestments() {
+    public ResponseEntity<List<InvestmentDto>> getAllInvestments() {
         return ResponseEntity.ok(investmentService.getAllInvestments());
     }
 }
-

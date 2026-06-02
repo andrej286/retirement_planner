@@ -1,4 +1,4 @@
-package com.retirementplanner.core.dto;
+package com.retirementplanner.core.model;
 
 public class ExpenseDto {
     private Long expenseID;

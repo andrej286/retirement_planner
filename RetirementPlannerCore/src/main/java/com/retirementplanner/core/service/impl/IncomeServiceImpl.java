@@ -1,7 +1,7 @@
 package com.retirementplanner.core.service.impl;
 
 import com.retirementplanner.core.mapper.IncomeMapper;
-import com.retirementplanner.core.model.IncomeModel;
+import com.retirementplanner.core.model.IncomeDto;
 import com.retirementplanner.core.service.IncomeService;
 import com.retirementplanner.persistence.entity.IncomeEntity;
 import com.retirementplanner.persistence.entity.UserEntity;
@@ -26,7 +26,7 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public IncomeModel saveIncome(IncomeModel income) {
+    public IncomeDto saveIncome(IncomeDto income) {
         IncomeEntity entity = incomeMapper.toEntity(income);
         if (income.getUserID() != null) {
             UserEntity user = userRepository.findById(income.getUserID()).orElse(null);
@@ -37,13 +37,12 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public IncomeModel getIncomeById(Long id) {
+    public IncomeDto getIncomeById(Long id) {
         return incomeRepository.findById(id).map(incomeMapper::toModel).orElse(null);
     }
 
     @Override
-    public List<IncomeModel> getAllIncomes() {
+    public List<IncomeDto> getAllIncomes() {
         return incomeRepository.findAll().stream().map(incomeMapper::toModel).collect(Collectors.toList());
     }
 }
-

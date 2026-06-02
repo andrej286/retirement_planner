@@ -1,4 +1,4 @@
-package com.retirementplanner.core.dto;
+package com.retirementplanner.core.model;
 
 import java.time.LocalDate;
 import java.util.List;

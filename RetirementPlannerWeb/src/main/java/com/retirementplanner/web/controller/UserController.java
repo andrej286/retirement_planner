@@ -1,6 +1,6 @@
 package com.retirementplanner.web.controller;
 
-import com.retirementplanner.core.model.UserModel;
+import com.retirementplanner.core.model.UserDto;
 import com.retirementplanner.core.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserModel> createUser(@RequestBody UserModel user) {
-        UserModel saved = userService.saveUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+        UserDto saved = userService.saveUser(user);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
-        UserModel user = userService.getUserById(id);
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        UserDto user = userService.getUserById(id);
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
@@ -33,8 +33,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserModel>> getAllUsers() {
+    public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 }
-

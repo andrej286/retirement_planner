@@ -1,7 +1,7 @@
 package com.retirementplanner.core.service.impl;
 
 import com.retirementplanner.core.mapper.InvestmentMapper;
-import com.retirementplanner.core.model.InvestmentModel;
+import com.retirementplanner.core.model.InvestmentDto;
 import com.retirementplanner.core.service.InvestmentService;
 import com.retirementplanner.persistence.entity.InvestmentEntity;
 import com.retirementplanner.persistence.entity.UserEntity;
@@ -26,7 +26,7 @@ public class InvestmentServiceImpl implements InvestmentService {
     }
 
     @Override
-    public InvestmentModel saveInvestment(InvestmentModel investment) {
+    public InvestmentDto saveInvestment(InvestmentDto investment) {
         InvestmentEntity entity = investmentMapper.toEntity(investment);
         if (investment.getUserID() != null) {
             UserEntity user = userRepository.findById(investment.getUserID()).orElse(null);
@@ -37,13 +37,12 @@ public class InvestmentServiceImpl implements InvestmentService {
     }
 
     @Override
-    public InvestmentModel getInvestmentById(Long id) {
+    public InvestmentDto getInvestmentById(Long id) {
         return investmentRepository.findById(id).map(investmentMapper::toModel).orElse(null);
     }
 
     @Override
-    public List<InvestmentModel> getAllInvestments() {
+    public List<InvestmentDto> getAllInvestments() {
         return investmentRepository.findAll().stream().map(investmentMapper::toModel).collect(Collectors.toList());
     }
 }
-

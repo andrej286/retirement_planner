@@ -1,12 +1,11 @@
 package com.retirementplanner.core.service;
 
-import com.retirementplanner.core.model.InvestmentModel;
+import com.retirementplanner.core.model.InvestmentDto;
 
 import java.util.List;
 
 public interface InvestmentService {
-    InvestmentModel saveInvestment(InvestmentModel investment);
-    InvestmentModel getInvestmentById(Long id);
-    List<InvestmentModel> getAllInvestments();
+    InvestmentDto saveInvestment(InvestmentDto investment);
+    InvestmentDto getInvestmentById(Long id);
+    List<InvestmentDto> getAllInvestments();
 }
-

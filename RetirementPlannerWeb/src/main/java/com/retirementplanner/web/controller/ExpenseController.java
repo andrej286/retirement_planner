@@ -1,6 +1,6 @@
 package com.retirementplanner.web.controller;
 
-import com.retirementplanner.core.model.ExpenseModel;
+import com.retirementplanner.core.model.ExpenseDto;
 import com.retirementplanner.core.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<ExpenseModel> createExpense(@RequestBody ExpenseModel expense) {
-        ExpenseModel saved = expenseService.saveExpense(expense);
+    public ResponseEntity<ExpenseDto> createExpense(@RequestBody ExpenseDto expense) {
+        ExpenseDto saved = expenseService.saveExpense(expense);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExpenseModel> getExpense(@PathVariable Long id) {
-        ExpenseModel expense = expenseService.getExpenseById(id);
+    public ResponseEntity<ExpenseDto> getExpense(@PathVariable Long id) {
+        ExpenseDto expense = expenseService.getExpenseById(id);
         if (expense == null) {
             return ResponseEntity.notFound().build();
         }
@@ -33,8 +33,7 @@ public class ExpenseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ExpenseModel>> getAllExpenses() {
+    public ResponseEntity<List<ExpenseDto>> getAllExpenses() {
         return ResponseEntity.ok(expenseService.getAllExpenses());
     }
 }
-

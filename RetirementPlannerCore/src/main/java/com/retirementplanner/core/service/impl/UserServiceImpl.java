@@ -1,7 +1,7 @@
 package com.retirementplanner.core.service.impl;
 
 import com.retirementplanner.core.mapper.UserMapper;
-import com.retirementplanner.core.model.UserModel;
+import com.retirementplanner.core.model.UserDto;
 import com.retirementplanner.core.service.UserService;
 import com.retirementplanner.persistence.entity.UserEntity;
 import com.retirementplanner.persistence.repository.UserRepository;
@@ -22,20 +22,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel saveUser(UserModel user) {
+    public UserDto saveUser(UserDto user) {
         UserEntity entity = userMapper.toEntity(user);
         UserEntity saved = userRepository.save(entity);
         return userMapper.toModel(saved);
     }
 
     @Override
-    public UserModel getUserById(Long id) {
+    public UserDto getUserById(Long id) {
         return userRepository.findById(id).map(userMapper::toModel).orElse(null);
     }
 
     @Override
-    public List<UserModel> getAllUsers() {
+    public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream().map(userMapper::toModel).collect(Collectors.toList());
     }
 }
-

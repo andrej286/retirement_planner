@@ -1,6 +1,6 @@
 package com.retirementplanner.web.controller;
 
-import com.retirementplanner.core.model.IncomeModel;
+import com.retirementplanner.core.model.IncomeDto;
 import com.retirementplanner.core.service.IncomeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,14 @@ public class IncomeController {
     }
 
     @PostMapping
-    public ResponseEntity<IncomeModel> createIncome(@RequestBody IncomeModel income) {
-        IncomeModel saved = incomeService.saveIncome(income);
+    public ResponseEntity<IncomeDto> createIncome(@RequestBody IncomeDto income) {
+        IncomeDto saved = incomeService.saveIncome(income);
         return ResponseEntity.ok(saved);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<IncomeModel> getIncome(@PathVariable Long id) {
-        IncomeModel income = incomeService.getIncomeById(id);
+    public ResponseEntity<IncomeDto> getIncome(@PathVariable Long id) {
+        IncomeDto income = incomeService.getIncomeById(id);
         if (income == null) {
             return ResponseEntity.notFound().build();
         }
@@ -33,8 +33,7 @@ public class IncomeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IncomeModel>> getAllIncomes() {
+    public ResponseEntity<List<IncomeDto>> getAllIncomes() {
         return ResponseEntity.ok(incomeService.getAllIncomes());
     }
 }
-

@@ -1,7 +1,7 @@
 package com.retirementplanner.core.service.impl;
 
 import com.retirementplanner.core.mapper.ExpenseMapper;
-import com.retirementplanner.core.model.ExpenseModel;
+import com.retirementplanner.core.model.ExpenseDto;
 import com.retirementplanner.core.service.ExpenseService;
 import com.retirementplanner.persistence.entity.ExpenseEntity;
 import com.retirementplanner.persistence.entity.UserEntity;
@@ -26,7 +26,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public ExpenseModel saveExpense(ExpenseModel expense) {
+    public ExpenseDto saveExpense(ExpenseDto expense) {
         ExpenseEntity entity = expenseMapper.toEntity(expense);
         if (expense.getUserID() != null) {
             UserEntity user = userRepository.findById(expense.getUserID()).orElse(null);
@@ -37,13 +37,12 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public ExpenseModel getExpenseById(Long id) {
+    public ExpenseDto getExpenseById(Long id) {
         return expenseRepository.findById(id).map(expenseMapper::toModel).orElse(null);
     }
 
     @Override
-    public List<ExpenseModel> getAllExpenses() {
+    public List<ExpenseDto> getAllExpenses() {
         return expenseRepository.findAll().stream().map(expenseMapper::toModel).collect(Collectors.toList());
     }
 }
-
