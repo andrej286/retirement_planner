@@ -1,0 +1,9 @@
+com\retirementplanner\persistence\repository\InvestmentRepository.class
+com\retirementplanner\persistence\repository\ExpenseRepository.class
+com\retirementplanner\persistence\repository\UserRepository.class
+com\retirementplanner\persistence\repository\IncomeRepository.class
+com\retirementplanner\persistence\entity\Frequency.class
+com\retirementplanner\persistence\entity\InvestmentEntity.class
+com\retirementplanner\persistence\entity\UserEntity.class
+com\retirementplanner\persistence\entity\IncomeEntity.class
+com\retirementplanner\persistence\entity\ExpenseEntity.class

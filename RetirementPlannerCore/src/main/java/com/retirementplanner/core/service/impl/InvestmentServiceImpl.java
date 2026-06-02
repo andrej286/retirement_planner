@@ -1,0 +1,49 @@
+package com.retirementplanner.core.service.impl;
+
+import com.retirementplanner.core.mapper.InvestmentMapper;
+import com.retirementplanner.core.model.InvestmentModel;
+import com.retirementplanner.core.service.InvestmentService;
+import com.retirementplanner.persistence.entity.InvestmentEntity;
+import com.retirementplanner.persistence.entity.UserEntity;
+import com.retirementplanner.persistence.repository.InvestmentRepository;
+import com.retirementplanner.persistence.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class InvestmentServiceImpl implements InvestmentService {
+
+    private final InvestmentRepository investmentRepository;
+    private final UserRepository userRepository;
+    private final InvestmentMapper investmentMapper;
+
+    public InvestmentServiceImpl(InvestmentRepository investmentRepository, UserRepository userRepository, InvestmentMapper investmentMapper) {
+        this.investmentRepository = investmentRepository;
+        this.userRepository = userRepository;
+        this.investmentMapper = investmentMapper;
+    }
+
+    @Override
+    public InvestmentModel saveInvestment(InvestmentModel investment) {
+        InvestmentEntity entity = investmentMapper.toEntity(investment);
+        if (investment.getUserID() != null) {
+            UserEntity user = userRepository.findById(investment.getUserID()).orElse(null);
+            entity.setUser(user);
+        }
+        InvestmentEntity saved = investmentRepository.save(entity);
+        return investmentMapper.toModel(saved);
+    }
+
+    @Override
+    public InvestmentModel getInvestmentById(Long id) {
+        return investmentRepository.findById(id).map(investmentMapper::toModel).orElse(null);
+    }
+
+    @Override
+    public List<InvestmentModel> getAllInvestments() {
+        return investmentRepository.findAll().stream().map(investmentMapper::toModel).collect(Collectors.toList());
+    }
+}
+
