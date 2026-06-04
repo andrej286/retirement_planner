@@ -19,6 +19,7 @@
     <module>RetirementPlannerPersistence</module>
     <module>RetirementPlannerCore</module>
     <module>RetirementPlannerWeb</module>
+    <module>RetirementPlannerUI</module>
   </modules>
 
   <packaging>pom</packaging>
