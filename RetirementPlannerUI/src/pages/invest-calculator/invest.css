@@ -1,0 +1,61 @@
+.invest-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.invest-container h1 {
+  color: #51CF66;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.invest-container .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.invest-container .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.text-success {
+  color: #51CF66 !important;
+}
+
+.text-primary {
+  color: #0077B6 !important;
+}
+
+.text-danger {
+  color: #FF6B6B !important;
+}
+
+.bg-success {
+  background-color: #51CF66 !important;
+}
+
+.bg-primary {
+  background-color: #0077B6 !important;
+}
+
+.bg-danger {
+  background-color: #FF6B6B !important;
+}
+
+.projection-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (max-width: 768px) {
+  .invest-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .invest-container Card {
+    margin-bottom: 1rem;
+  }
+}
+

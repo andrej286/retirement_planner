@@ -1,0 +1,25 @@
+.tax-savings-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.tax-savings-container h1 {
+  color: #0077B6;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.tax-savings-container .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.tax-savings-container .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.text-success {
+  color: #51CF66 !important;
+}
+

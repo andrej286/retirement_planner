@@ -22,6 +22,9 @@
         "pessimisticSeries": "Pessimistic"
       }
     },
+    "taxSavings": {
+      "title": "Tax Savings from 3rd Pillar"
+    },
     "button": "Go to Calculator"
   },
   "currency": "€",
@@ -109,6 +112,35 @@
         "duration": "Duration",
         "actions": "Actions"
       }
+    }
+  },
+  "home": {
+    "title": "Retirement Planning Overview",
+    "leftSection": {
+      "title": "Income Distribution to Pillars",
+      "description": "Allocate your income across the three retirement pillars",
+      "totalIncome": "Total Annual Income (€):",
+      "firstPillar": "1st Pillar - Government Pension (%):",
+      "secondPillar": "2nd Pillar - Occupational Pension (%):",
+      "thirdPillar": "3rd Pillar - Private Savings (%):",
+      "firstPillarAmount": "1st Pillar Amount (€):",
+      "secondPillarAmount": "2nd Pillar Amount (€):",
+      "thirdPillarAmount": "3rd Pillar Amount (€):",
+      "chart": {
+        "title": "Retirement Pillar Distribution",
+        "firstPillar": "1st Pillar",
+        "secondPillar": "2nd Pillar",
+        "thirdPillar": "3rd Pillar"
+      }
+    },
+    "rightSection": {
+      "title": "Retirement Planning Tools",
+      "taxSavings": "Tax Savings",
+      "taxSavingsDesc": "Calculate how much you can save on taxes by investing in the 3rd pillar",
+      "savings": "Savings",
+      "savingsDesc": "Estimate your annual savings until retirement",
+      "investCalculator": "Invest Calculator",
+      "investCalculatorDesc": "Visualize the growth of your investments with different scenarios"
     }
   }
 }

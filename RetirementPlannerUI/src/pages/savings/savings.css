@@ -1,0 +1,29 @@
+.savings-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.savings-container h1 {
+  color: #51CF66;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.savings-container .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.savings-container .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.text-success {
+  color: #51CF66 !important;
+}
+
+.bg-success {
+  background-color: #51CF66 !important;
+}
+
