@@ -45,4 +45,27 @@ public class ExpenseServiceImpl implements ExpenseService {
     public List<ExpenseDto> getAllExpenses() {
         return expenseRepository.findAll().stream().map(expenseMapper::toModel).collect(Collectors.toList());
     }
+
+    @Override
+    public ExpenseDto updateExpense(Long id, ExpenseDto expense) {
+        return expenseRepository.findById(id).map(entity -> {
+            entity.setName(expense.getName());
+            entity.setDescription(expense.getDescription());
+            entity.setAnnualMonthlyValue(expense.getAnnualMonthlyValue());
+            entity.setInterestRate(expense.getInterestRate());
+            entity.setStartDate(expense.getStartDate());
+            entity.setTerminationDate(expense.getTerminationDate());
+            if (expense.getUserID() != null) {
+                UserEntity user = userRepository.findById(expense.getUserID()).orElse(null);
+                entity.setUser(user);
+            }
+            ExpenseEntity updated = expenseRepository.save(entity);
+            return expenseMapper.toModel(updated);
+        }).orElse(null);
+    }
+
+    @Override
+    public void deleteExpense(Long id) {
+        expenseRepository.deleteById(id);
+    }
 }

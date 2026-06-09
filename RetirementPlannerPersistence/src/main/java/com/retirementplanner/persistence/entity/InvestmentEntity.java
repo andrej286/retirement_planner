@@ -10,6 +10,8 @@ public class InvestmentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long investmentID;
 
+    private String name;
+
     private Double initialAmount;
 
     private Double interestRate;
@@ -26,6 +28,14 @@ public class InvestmentEntity {
 
     public void setInvestmentID(Long investmentID) {
         this.investmentID = investmentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getInitialAmount() {

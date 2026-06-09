@@ -1,7 +1,10 @@
 {
   "header": {
     "title": "Retirement Planner",
-    "home": "Home"
+    "home": "Home",
+    "expenses": "Expenses",
+    "incomes": "Incomes",
+    "investment": "Investments"
   },
   "calculator": {
     "invest": {
@@ -20,5 +23,92 @@
       }
     },
     "button": "Go to Calculator"
+  },
+  "currency": "€",
+  "section": {
+    "income": {
+      "title": "Incomes",
+      "value": "Value (€)",
+      "form": {
+        "addTitle": "Add an Income",
+        "editTitle": "Edit Income",
+        "titleForm": "Income form",
+        "name": "Name of Income",
+        "namePlaceholder": "Enter name",
+        "description": "Description of income",
+        "descriptionPlaceholder": "Enter description",
+        "monthlyValue": "Annual Monthly Value:",
+        "monthlyValuePlaceholder": "Enter value",
+        "startDate": "Start Date:",
+        "terminationDate": "Termination Date:",
+        "interest": "Interest Rate:",
+        "interestPlaceholder": "Enter interest rate",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name of Income",
+        "monthlyValue": "Annual Monthly Value",
+        "startDate": "Date of Occurrence",
+        "terminationDate": "Date of Termination",
+        "interest": "Interest Rate",
+        "actions": "Actions"
+      }
+    },
+    "expense": {
+      "title": "Expenses",
+      "value": "Value (€)",
+      "form": {
+        "addTitle": "Add an Expense",
+        "editTitle": "Edit Expense",
+        "titleForm": "Expense form",
+        "name": "Name of Expense",
+        "namePlaceholder": "Enter name",
+        "description": "Description of expense",
+        "descriptionPlaceholder": "Enter description",
+        "monthlyValue": "Annual Monthly Value:",
+        "monthlyValuePlaceholder": "Enter value",
+        "startDate": "Start Date:",
+        "terminationDate": "Termination Date:",
+        "interest": "Interest Rate:",
+        "interestPlaceholder": "Enter interest rate",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name of Expense",
+        "monthlyValue": "Annual Monthly Value",
+        "startDate": "Date of Occurrence",
+        "terminationDate": "Date of Termination",
+        "interest": "Interest Rate",
+        "actions": "Actions"
+      }
+    },
+    "investment": {
+      "title": "Investments",
+      "value": "Value (€)",
+      "form": {
+        "addTitle": "Add an Investment",
+        "editTitle": "Edit Investment",
+        "titleForm": "Investment form",
+        "name": "Name of Investment",
+        "namePlaceholder": "Enter investment name",
+        "initialAmount": "Initial Amount:",
+        "initialAmountPlaceholder": "Enter initial amount",
+        "interest": "Interest Rate:",
+        "interestPlaceholder": "Enter interest rate",
+        "duration": "Duration (years):",
+        "durationPlaceholder": "Enter duration in years",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name of Investment",
+        "initialAmount": "Initial Amount",
+        "interest": "Interest Rate",
+        "duration": "Duration",
+        "actions": "Actions"
+      }
+    }
   }
 }

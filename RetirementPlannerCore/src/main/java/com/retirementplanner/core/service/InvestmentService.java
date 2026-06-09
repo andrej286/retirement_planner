@@ -8,4 +8,6 @@ public interface InvestmentService {
     InvestmentDto saveInvestment(InvestmentDto investment);
     InvestmentDto getInvestmentById(Long id);
     List<InvestmentDto> getAllInvestments();
+    InvestmentDto updateInvestment(Long id, InvestmentDto investment);
+    void deleteInvestment(Long id);
 }

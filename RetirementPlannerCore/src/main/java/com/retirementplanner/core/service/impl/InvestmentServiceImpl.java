@@ -45,4 +45,25 @@ public class InvestmentServiceImpl implements InvestmentService {
     public List<InvestmentDto> getAllInvestments() {
         return investmentRepository.findAll().stream().map(investmentMapper::toModel).collect(Collectors.toList());
     }
+
+    @Override
+    public InvestmentDto updateInvestment(Long id, InvestmentDto investment) {
+        return investmentRepository.findById(id).map(entity -> {
+            entity.setName(investment.getName());
+            entity.setInitialAmount(investment.getInitialAmount());
+            entity.setInterestRate(investment.getInterestRate());
+            entity.setDuration(investment.getDuration());
+            if (investment.getUserID() != null) {
+                UserEntity user = userRepository.findById(investment.getUserID()).orElse(null);
+                entity.setUser(user);
+            }
+            InvestmentEntity updated = investmentRepository.save(entity);
+            return investmentMapper.toModel(updated);
+        }).orElse(null);
+    }
+
+    @Override
+    public void deleteInvestment(Long id) {
+        investmentRepository.deleteById(id);
+    }
 }

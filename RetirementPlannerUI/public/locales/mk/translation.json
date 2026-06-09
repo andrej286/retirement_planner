@@ -1,7 +1,10 @@
 {
   "header": {
     "title": "Пензионен Планер",
-    "home": "Почетна"
+    "home": "Почетна",
+    "expenses": "Трошоци",
+    "incomes": "Приходи",
+    "investment": "Инвестиции"
   },
   "calculator": {
     "invest": {
@@ -20,5 +23,94 @@
       }
     },
     "button": "Оди до Калкулатор"
+  },
+  "currency": "ден",
+  "section": {
+    "income": {
+      "title": "Приходи",
+      "value": "Вредност (ден)",
+      "form": {
+        "addTitle": "Додади Приход",
+        "editTitle": "Измени Приход",
+        "titleForm": "Форма за Приход",
+        "name": "Име на Приход",
+        "namePlaceholder": "Внеси име",
+        "description": "Опис на приход",
+        "descriptionPlaceholder": "Внеси опис",
+        "monthlyValue": "Годишна Месечна Вредност:",
+        "monthlyValuePlaceholder": "Внеси вредност",
+        "startDate": "Датум на Почеток:",
+        "terminationDate": "Датум на Престанок:",
+        "interest": "Стапка на Камата:",
+        "interestPlaceholder": "Внеси каматна стапка",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име на Приход",
+        "monthlyValue": "Годишна Месечна Вредност",
+        "startDate": "Датум на Почеток",
+        "terminationDate": "Датум на Престанок",
+        "interest": "Стапка на Камата",
+        "actions": "Акции"
+      }
+    },
+    "expense": {
+      "title": "Трошоци",
+      "value": "Вредност (ден)",
+      "form": {
+        "addTitle": "Додади Трошок",
+        "editTitle": "Измени Трошок",
+        "titleForm": "Форма за Трошок",
+        "name": "Име на Трошок",
+        "namePlaceholder": "Внеси име",
+        "description": "Опис на трошок",
+        "descriptionPlaceholder": "Внеси опис",
+        "monthlyValue": "Годишна Месечна Вредност:",
+        "monthlyValuePlaceholder": "Внеси вредност",
+        "startDate": "Датум на Почеток:",
+        "terminationDate": "Датум на Престанок:",
+        "interest": "Стапка на Камата:",
+        "interestPlaceholder": "Внеси каматна стапка",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име на Трошок",
+        "monthlyValue": "Годишна Месечна Вредност",
+        "startDate": "Датум на Почеток",
+        "terminationDate": "Датум на Престанок",
+        "interest": "Стапка на Камата",
+        "actions": "Акции"
+      }
+    },
+    "investment": {
+      "title": "Инвестиции",
+      "value": "Вредност (ден)",
+      "form": {
+        "addTitle": "Додади Инвестиција",
+        "editTitle": "Измени Инвестиција",
+        "titleForm": "Форма за Инвестиција",
+        "name": "Име на Инвестиција",
+        "namePlaceholder": "Внеси име на инвестиција",
+        "initialAmount": "Почетен Износ:",
+        "initialAmountPlaceholder": "Внеси почетен износ",
+        "interest": "Стапка на Камата:",
+        "interestPlaceholder": "Внеси каматна стапка",
+        "duration": "Временско Траење (години):",
+        "durationPlaceholder": "Внеси времетраење во години",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име на Инвестиција",
+        "initialAmount": "Почетен Износ",
+        "interest": "Стапка на Камата",
+        "duration": "Времетраење",
+        "actions": "Акции"
+      }
+    }
   }
 }
+
+

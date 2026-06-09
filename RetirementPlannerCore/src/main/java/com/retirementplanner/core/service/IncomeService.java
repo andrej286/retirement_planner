@@ -8,4 +8,6 @@ public interface IncomeService {
     IncomeDto saveIncome(IncomeDto income);
     IncomeDto getIncomeById(Long id);
     List<IncomeDto> getAllIncomes();
+    IncomeDto updateIncome(Long id, IncomeDto income);
+    void deleteIncome(Long id);
 }

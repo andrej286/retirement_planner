@@ -45,4 +45,27 @@ public class IncomeServiceImpl implements IncomeService {
     public List<IncomeDto> getAllIncomes() {
         return incomeRepository.findAll().stream().map(incomeMapper::toModel).collect(Collectors.toList());
     }
+
+    @Override
+    public IncomeDto updateIncome(Long id, IncomeDto income) {
+        return incomeRepository.findById(id).map(entity -> {
+            entity.setName(income.getName());
+            entity.setDescription(income.getDescription());
+            entity.setAnnualMonthlyValue(income.getAnnualMonthlyValue());
+            entity.setInterestRate(income.getInterestRate());
+            entity.setStartDate(income.getStartDate());
+            entity.setTerminationDate(income.getTerminationDate());
+            if (income.getUserID() != null) {
+                UserEntity user = userRepository.findById(income.getUserID()).orElse(null);
+                entity.setUser(user);
+            }
+            IncomeEntity updated = incomeRepository.save(entity);
+            return incomeMapper.toModel(updated);
+        }).orElse(null);
+    }
+
+    @Override
+    public void deleteIncome(Long id) {
+        incomeRepository.deleteById(id);
+    }
 }

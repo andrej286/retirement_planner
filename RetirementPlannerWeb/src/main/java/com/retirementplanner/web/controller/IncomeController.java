@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/incomes")
 public class IncomeController {
 
@@ -35,5 +36,20 @@ public class IncomeController {
     @GetMapping
     public ResponseEntity<List<IncomeDto>> getAllIncomes() {
         return ResponseEntity.ok(incomeService.getAllIncomes());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<IncomeDto> updateIncome(@PathVariable Long id, @RequestBody IncomeDto income) {
+        IncomeDto updated = incomeService.updateIncome(id, income);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteIncome(@PathVariable Long id) {
+        incomeService.deleteIncome(id);
+        return ResponseEntity.noContent().build();
     }
 }

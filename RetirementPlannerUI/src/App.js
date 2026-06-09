@@ -27,7 +27,7 @@ function RetirementPlanner() {
     <LocaleContext.Provider value={{locale, setLocale}}>
       <Suspense fallback={<Loading />}>
         <>
-          {showNavbar && <RetirementNavbar />}
+          {showNavbar && <RetirementNavbar handleLocaleChange={handleChange} />}
           <Routes>
             {ALL_PAGES.map((page) => <Route path={page.path} element={page.component} />)}
           </Routes>

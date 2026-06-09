@@ -2,10 +2,19 @@ package com.retirementplanner.core.model;
 
 public class InvestmentDto {
     private Long investmentID;
+    private String name;
     private Double initialAmount;
     private Double interestRate;
     private Integer duration;
     private Long userID;
+
+    public Long getId() {
+        return investmentID;
+    }
+
+    public void setId(Long id) {
+        this.investmentID = id;
+    }
 
     public Long getInvestmentID() {
         return investmentID;
@@ -13,6 +22,14 @@ public class InvestmentDto {
 
     public void setInvestmentID(Long investmentID) {
         this.investmentID = investmentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getInitialAmount() {
