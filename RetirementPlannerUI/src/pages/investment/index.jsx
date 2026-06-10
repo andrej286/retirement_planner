@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {InvestmentsTable} from "./investments-table";
+import InvestmentChart from "./investment-chart";
 import AddInvestmentForm from "./add-investment-form";
 import {fetchInvestments} from "../../api/http-utils/investments";
 import {useTranslation} from "react-i18next";
@@ -20,6 +21,7 @@ const Investment = () => {
   return (
     <>
       <h1>{t("section.investment.title")}</h1>
+      <InvestmentChart investments={investments} />
       <AddInvestmentForm onSuccess={fetchAndSetInvestments}/>
       <InvestmentsTable investments={investments} onSuccess={fetchAndSetInvestments}/>
     </>

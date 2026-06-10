@@ -28,6 +28,14 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.pillar-info-box {
+  background-color: #f0f8ff;
+  border-left: 4px solid #0077B6;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
 .amounts-display {
   margin-top: 20px;
   padding-top: 20px;

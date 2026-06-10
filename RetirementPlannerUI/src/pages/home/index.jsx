@@ -11,18 +11,22 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [totalIncome, setTotalIncome] = useState(50000);
-  const [firstPillarPercentage, setFirstPillarPercentage] = useState(40);
-  const [secondPillarPercentage, setSecondPillarPercentage] = useState(40);
-  const [thirdPillarPercentage, setThirdPillarPercentage] = useState(20);
+  const [secondPillarPercentage, setSecondPillarPercentage] = useState(10);
+  const [thirdPillarPercentage, setThirdPillarPercentage] = useState(5);
+
+  // Fixed percentage based on retirement planning logic
+  const FIRST_PILLAR_PERCENTAGE = 8;    // Mandatory state pension (fixed)
 
   // Calculate amounts for each pillar
-  const firstPillarAmount = Math.round(totalIncome * (firstPillarPercentage / 100));
+  const firstPillarAmount = Math.round(totalIncome * (FIRST_PILLAR_PERCENTAGE / 100));
   const secondPillarAmount = Math.round(totalIncome * (secondPillarPercentage / 100));
   const thirdPillarAmount = Math.round(totalIncome * (thirdPillarPercentage / 100));
+  const remainingAmount = Math.round(totalIncome - firstPillarAmount - secondPillarAmount - thirdPillarAmount);
 
-  const totalPercentage = firstPillarPercentage + secondPillarPercentage + thirdPillarPercentage;
+  const totalPercentage = FIRST_PILLAR_PERCENTAGE + secondPillarPercentage + thirdPillarPercentage;
+  const remainingPercentage = 100 - totalPercentage;
 
-  // Chart configuration for pie chart
+  // Chart configuration for pie chart with 4 pieces
   const chartOptions = {
     chart: {
       type: 'pie',
@@ -31,9 +35,10 @@ const Home = () => {
     labels: [
       t('home.leftSection.chart.firstPillar'),
       t('home.leftSection.chart.secondPillar'),
-      t('home.leftSection.chart.thirdPillar')
+      t('home.leftSection.chart.thirdPillar'),
+      t('home.leftSection.chart.remaining')
     ],
-    colors: ['#0077B6', '#00B4D8', '#90E0EF'],
+    colors: ['#0077B6', '#00B4D8', '#90E0EF', '#A8E6CF'],
     legend: {
       position: 'bottom'
     },
@@ -53,7 +58,7 @@ const Home = () => {
     }
   };
 
-  const chartSeries = [firstPillarAmount, secondPillarAmount, thirdPillarAmount];
+  const chartSeries = [firstPillarAmount, secondPillarAmount, thirdPillarAmount, remainingAmount];
 
   return (
     <Container fluid className="home-container py-5">
@@ -71,84 +76,101 @@ const Home = () => {
             />
           </div>
 
-          <div className="inputs-container">
-            <InputGroup className="mb-3">
-              <InputGroup.Text>{t('home.leftSection.totalIncome')}</InputGroup.Text>
-              <Form.Control
-                type="number"
-                value={totalIncome}
-                onChange={(e) => setTotalIncome(parseInt(e.target.value) || 0)}
-                min="0"
-              />
-            </InputGroup>
+           <div className="inputs-container">
+             <InputGroup className="mb-3">
+               <InputGroup.Text>{t('home.leftSection.totalIncome')}</InputGroup.Text>
+               <Form.Control
+                 type="number"
+                 value={totalIncome}
+                 onChange={(e) => setTotalIncome(parseInt(e.target.value) || 0)}
+                 min="0"
+               />
+             </InputGroup>
 
-            <InputGroup className="mb-3">
-              <InputGroup.Text>{t('home.leftSection.firstPillar')}</InputGroup.Text>
-              <Form.Control
-                type="number"
-                value={firstPillarPercentage}
-                onChange={(e) => setFirstPillarPercentage(parseInt(e.target.value) || 0)}
-                min="0"
-                max="100"
-              />
-            </InputGroup>
+             <div className="mb-3 pillar-info-box">
+               <small className="text-muted">{t('home.leftSection.firstPillarInfo')}</small>
+               <InputGroup className="mt-2">
+                 <InputGroup.Text>{t('home.leftSection.firstPillar')}</InputGroup.Text>
+                 <Form.Control
+                   type="number"
+                   value={FIRST_PILLAR_PERCENTAGE}
+                   disabled
+                 />
+                 <InputGroup.Text>%</InputGroup.Text>
+               </InputGroup>
+             </div>
 
-            <InputGroup className="mb-3">
-              <InputGroup.Text>{t('home.leftSection.secondPillar')}</InputGroup.Text>
-              <Form.Control
-                type="number"
-                value={secondPillarPercentage}
-                onChange={(e) => setSecondPillarPercentage(parseInt(e.target.value) || 0)}
-                min="0"
-                max="100"
-              />
-            </InputGroup>
+             <div className="mb-3 pillar-info-box">
+               <small className="text-muted">{t('home.leftSection.secondPillarInfo')}</small>
+               <InputGroup className="mt-2">
+                 <InputGroup.Text>{t('home.leftSection.secondPillar')}</InputGroup.Text>
+                 <Form.Control
+                   type="number"
+                   value={secondPillarPercentage}
+                   onChange={(e) => setSecondPillarPercentage(parseInt(e.target.value) || 0)}
+                   min="6"
+                   max="15"
+                 />
+                 <InputGroup.Text>%</InputGroup.Text>
+               </InputGroup>
+             </div>
 
-            <InputGroup className="mb-3">
-              <InputGroup.Text>{t('home.leftSection.thirdPillar')}</InputGroup.Text>
-              <Form.Control
-                type="number"
-                value={thirdPillarPercentage}
-                onChange={(e) => setThirdPillarPercentage(parseInt(e.target.value) || 0)}
-                min="0"
-                max="100"
-              />
-            </InputGroup>
-
-            {totalPercentage !== 100 && (
-              <div className="alert alert-warning mb-3">
-                Total percentage: {totalPercentage}% (should be 100%)
+              <div className="mb-3 pillar-info-box">
+                <small className="text-muted">{t('home.leftSection.thirdPillarInfo')}</small>
+                <InputGroup className="mt-2">
+                  <InputGroup.Text>{t('home.leftSection.thirdPillar')}</InputGroup.Text>
+                  <Form.Control
+                    type="number"
+                    value={thirdPillarPercentage}
+                    onChange={(e) => setThirdPillarPercentage(parseInt(e.target.value) || 0)}
+                    min="0"
+                    max="30"
+                  />
+                  <InputGroup.Text>%</InputGroup.Text>
+                </InputGroup>
               </div>
-            )}
 
-            <div className="amounts-display">
-              <InputGroup className="mb-2">
-                <InputGroup.Text>{t('home.leftSection.firstPillarAmount')}</InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  value={formatNumber(firstPillarAmount, t('currency'))}
-                  disabled
-                />
-              </InputGroup>
+             <div className="alert alert-info mb-3">
+               <strong>{t('home.leftSection.remainingPercentage')}:</strong> {remainingPercentage}%
+             </div>
 
-              <InputGroup className="mb-2">
-                <InputGroup.Text>{t('home.leftSection.secondPillarAmount')}</InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  value={formatNumber(secondPillarAmount, t('currency'))}
-                  disabled
-                />
-              </InputGroup>
+             <div className="amounts-display">
+               <InputGroup className="mb-2">
+                 <InputGroup.Text>{t('home.leftSection.firstPillarAmount')}</InputGroup.Text>
+                 <Form.Control
+                   type="text"
+                   value={formatNumber(firstPillarAmount, t('currency'))}
+                   disabled
+                 />
+               </InputGroup>
 
-              <InputGroup className="mb-2">
-                <InputGroup.Text>{t('home.leftSection.thirdPillarAmount')}</InputGroup.Text>
-                <Form.Control
-                  type="text"
-                  value={formatNumber(thirdPillarAmount, t('currency'))}
-                  disabled
-                />
-              </InputGroup>
-            </div>
+               <InputGroup className="mb-2">
+                 <InputGroup.Text>{t('home.leftSection.secondPillarAmount')}</InputGroup.Text>
+                 <Form.Control
+                   type="text"
+                   value={formatNumber(secondPillarAmount, t('currency'))}
+                   disabled
+                 />
+               </InputGroup>
+
+               <InputGroup className="mb-2">
+                 <InputGroup.Text>{t('home.leftSection.thirdPillarAmount')}</InputGroup.Text>
+                 <Form.Control
+                   type="text"
+                   value={formatNumber(thirdPillarAmount, t('currency'))}
+                   disabled
+                 />
+               </InputGroup>
+
+               <InputGroup className="mb-2">
+                 <InputGroup.Text>{t('home.leftSection.remainingAmount')}</InputGroup.Text>
+                 <Form.Control
+                   type="text"
+                   value={formatNumber(remainingAmount, t('currency'))}
+                   disabled
+                 />
+               </InputGroup>
+             </div>
           </div>
         </Col>
 

@@ -18,7 +18,7 @@ export const RetirementNavbar = ({handleLocaleChange}) => {
           <Col className="d-flex align-items-center">
             <Navbar.Brand href={HOME_PAGE.path}>
               {t("header.title")}
-              <Image src="/images/piggy-bank.png" width="50" className="me-3" fluid/>
+              <Image src="/images/retirement-planner-icon.png" width="40" className="me-3" fluid/>
             </Navbar.Brand>
             <Nav className="me-auto" activeKey={location.pathname}>
               <Nav.Link href={HOME_PAGE.path}>{t("header.home")}</Nav.Link>

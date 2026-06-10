@@ -4,7 +4,9 @@
     "home": "Home",
     "expenses": "Expenses",
     "incomes": "Incomes",
-    "investment": "Investments"
+    "investment": "Investments",
+    "userInfo": "User Profile",
+    "logOut": "Log Out"
   },
   "calculator": {
     "invest": {
@@ -61,6 +63,7 @@
     "expense": {
       "title": "Expenses",
       "value": "Value (€)",
+      "noExpensesMessage": "No expenses added yet. Add your first expense to see the yearly projection chart.",
       "form": {
         "addTitle": "Add an Expense",
         "editTitle": "Edit Expense",
@@ -78,6 +81,11 @@
         "close": "Close",
         "save": "Save Changes"
       },
+      "chart": {
+        "title": "Yearly Expense Projection",
+        "year": "Year",
+        "value": "Amount (€)"
+      },
       "table": {
         "name": "Name of Expense",
         "monthlyValue": "Annual Monthly Value",
@@ -90,6 +98,7 @@
     "investment": {
       "title": "Investments",
       "value": "Value (€)",
+      "noInvestmentsMessage": "No investments added yet. Add your first investment to see the growth chart.",
       "form": {
         "addTitle": "Add an Investment",
         "editTitle": "Edit Investment",
@@ -104,6 +113,11 @@
         "durationPlaceholder": "Enter duration in years",
         "close": "Close",
         "save": "Save Changes"
+      },
+      "chart": {
+        "title": "Investment Growth Projection",
+        "year": "Year",
+        "value": "Value (€)"
       },
       "table": {
         "name": "Name of Investment",
@@ -121,16 +135,22 @@
       "description": "Allocate your income across the three retirement pillars",
       "totalIncome": "Total Annual Income (€):",
       "firstPillar": "1st Pillar - Government Pension (%):",
+      "firstPillarInfo": "Fixed mandatory state pension (AHV/AVS). This is automatically deducted from your income and provides basic retirement security.",
       "secondPillar": "2nd Pillar - Occupational Pension (%):",
+      "secondPillarInfo": "Employee and employer contributions to occupational pension. Adjust this between 6-15% based on your employment agreement and savings goals.",
       "thirdPillar": "3rd Pillar - Private Savings (%):",
+      "thirdPillarInfo": "Voluntary private savings that you can adjust. This portion allows you to build additional retirement savings with tax advantages. Contribute what makes sense for your retirement goals.",
       "firstPillarAmount": "1st Pillar Amount (€):",
       "secondPillarAmount": "2nd Pillar Amount (€):",
       "thirdPillarAmount": "3rd Pillar Amount (€):",
+      "remainingAmount": "Remaining Income (€):",
+      "remainingPercentage": "Remaining for Personal Use",
       "chart": {
         "title": "Retirement Pillar Distribution",
         "firstPillar": "1st Pillar",
         "secondPillar": "2nd Pillar",
-        "thirdPillar": "3rd Pillar"
+        "thirdPillar": "3rd Pillar",
+        "remaining": "Remaining"
       }
     },
     "rightSection": {
