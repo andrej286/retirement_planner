@@ -1,9 +1,10 @@
-import {BrowserRouter, Route, Routes, useLocation} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, useLocation, Navigate} from 'react-router-dom';
 import i18n from "./i18n";
 import {Suspense, useState} from "react";
 import LocaleContext from "./LocaleContext";
-import {ALL_PAGES, NAVIGATION_PAGES} from "./routes";
+import {ALL_PAGES, NAVIGATION_PAGES, AUTH_CHOOSE_PAGE, LOGIN_PAGE, REGISTER_PAGE} from "./routes";
 import {RetirementNavbar} from "./common/components/retirement-navbar";
+import { AuthProvider, useAuth } from "./AuthContext";
 
 function Loading() {
   return (
@@ -13,6 +14,7 @@ function Loading() {
 
 function RetirementPlanner() {
   const [locale, setLocale] = useState(i18n.language)
+  const { isAuthenticated, isLoading } = useAuth();
 
   i18n.on('languageChanged', (lng) => setLocale(i18n.language))
 
@@ -21,7 +23,12 @@ function RetirementPlanner() {
   }
   const location = useLocation();
   const showNavbar = NAVIGATION_PAGES.some(page => page.path === location.pathname);
+  const isAuthPage = ['/login', '/register', '/'].includes(location.pathname);
 
+  // Redirect to auth page if not authenticated and trying to access protected routes
+  if (!isLoading && !isAuthenticated && !isAuthPage) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <LocaleContext.Provider value={{locale, setLocale}}>
@@ -29,7 +36,7 @@ function RetirementPlanner() {
         <>
           {showNavbar && <RetirementNavbar handleLocaleChange={handleChange} />}
           <Routes>
-            {ALL_PAGES.map((page) => <Route path={page.path} element={page.component} />)}
+            {ALL_PAGES.map((page) => <Route key={page.path} path={page.path} element={page.component} />)}
           </Routes>
         </>
       </Suspense>
@@ -40,7 +47,9 @@ function RetirementPlanner() {
 function App() {
   return (
     <BrowserRouter>
-      <RetirementPlanner />
+      <AuthProvider>
+        <RetirementPlanner />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

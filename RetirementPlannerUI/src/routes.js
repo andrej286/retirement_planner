@@ -5,6 +5,24 @@ import Income from "./pages/income";
 import Investment from "./pages/investment";
 import TaxSavings from "./pages/tax-savings";
 import Savings from "./pages/savings";
+import AuthChoose from "./pages/auth/AuthChoose";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
+
+export const AUTH_CHOOSE_PAGE = {
+  component: <AuthChoose />,
+  path: '/'
+}
+
+export const LOGIN_PAGE = {
+  component: <Login />,
+  path: '/login'
+}
+
+export const REGISTER_PAGE = {
+  component: <Register />,
+  path: '/register'
+}
 
 export const HOME_PAGE = {
   component: <Home />,
@@ -36,6 +54,9 @@ export const SAVINGS_PAGE = {
 }
 
 export const ALL_PAGES = [
+  AUTH_CHOOSE_PAGE,
+  LOGIN_PAGE,
+  REGISTER_PAGE,
   HOME_PAGE,
   INVEST_PAGE,
   EXPENSE_PAGE,

@@ -162,5 +162,22 @@
       "investCalculator": "Invest Calculator",
       "investCalculatorDesc": "Visualize the growth of your investments with different scenarios"
     }
+  },
+  "auth": {
+    "welcome": "Retirement Planner",
+    "welcomeMessage": "Welcome to the retirement planner",
+    "login": "Log in",
+    "register": "Register",
+    "tryWithoutAccount": "Would you like to login as a Guest",
+    "continueAsGuest" : "Continue as guest",
+    "username": "Username:",
+    "usernamePlaceholder": "username:",
+    "email": "Email:",
+    "emailPlaceholder": "email",
+    "password": "Password:",
+    "passwordPlaceholder": "password",
+    "confirmPassword": "Confirm Password:",
+    "confirmPasswordPlaceholder": "confirm password",
+    "alreadyHaveAccount": "Do you already have an account"
   }
 }
