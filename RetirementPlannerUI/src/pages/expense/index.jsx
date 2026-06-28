@@ -4,14 +4,19 @@ import ExpenseChart from "./expense-chart";
 import AddExpenseForm from "./add-expense-form";
 import {fetchExpenses} from "../../api/http-utils/expenses";
 import {useTranslation} from "react-i18next";
+import {useAuth} from "../../AuthContext";
 
 const Expense = () => {
   const [expenses, setExpenses] = useState([]);
   const {t} = useTranslation();
+  const {isGuest} = useAuth();
 
   const fetchAndSetExpenses = async () => {
-    const data = await fetchExpenses();
-    setExpenses(data);
+    if (!isGuest) {
+      const data = await fetchExpenses();
+
+      setExpenses(data);
+    }
   };
 
   useEffect(() => {
@@ -22,8 +27,8 @@ const Expense = () => {
     <>
       <h1>{t("section.expense.title")}</h1>
       <ExpenseChart expenses={expenses} />
-      <AddExpenseForm onSuccess={fetchAndSetExpenses}/>
-      <ExpensesTable expenses={expenses} onSuccess={fetchAndSetExpenses}/>
+      <AddExpenseForm setExpenses={setExpenses} onSuccess={fetchAndSetExpenses} isGuest={isGuest}/>
+      <ExpensesTable expenses={expenses} setExpenses={setExpenses} onSuccess={fetchAndSetExpenses} isGuest={isGuest}/>
     </>
   );
 };

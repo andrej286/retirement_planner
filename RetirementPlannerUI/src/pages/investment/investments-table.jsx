@@ -49,14 +49,18 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const InvestmentsTable = ({ investments, onSuccess }) => {
+export const InvestmentsTable = ({ investments, setInvestments, onSuccess, isGuest }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedInvestment, setSelectedInvestment] = useState(null);
   const {t} = useTranslation();
 
-  const handleDeleteInvestment = useCallback(async (id) => {
-    await deleteInvestment(id)
-    onSuccess()
+  const handleDeleteInvestment = useCallback(async (investment) => {
+    if (isGuest) {
+      setInvestments(prev => prev.filter(prevItem => prevItem.id !== investment.id))
+    } else {
+      await deleteInvestment(investment.id)
+      onSuccess()
+    }
   }, [onSuccess]);
 
   const handleEditInvestment = (investment) => {
@@ -78,8 +82,17 @@ export const InvestmentsTable = ({ investments, onSuccess }) => {
   };
 
   const handleSubmitEditModal = async () => {
-    await updateInvestment(selectedInvestment.id, selectedInvestment);
-    onSuccess();
+    if (isGuest) {
+      setInvestments(prevItems =>
+        prevItems.map(item =>
+          item.id === selectedInvestment.id
+            ? { ...item, ...selectedInvestment } // Creates a new object with updates
+            : item                              // Returns unchanged object
+        ));
+    } else {
+      await updateInvestment(selectedInvestment.id, selectedInvestment);
+      onSuccess();
+    }
     handleCloseEditModal();
   };
 
@@ -106,7 +119,7 @@ export const InvestmentsTable = ({ investments, onSuccess }) => {
           <StyledTableCell>{investment.duration} years</StyledTableCell>
           <StyledTableCell>
             <EditButton onClick={() => handleEditInvestment(investment)}/>
-            <DeleteButton onClick={() => handleDeleteInvestment(investment.id)}/>
+            <DeleteButton onClick={() => handleDeleteInvestment(investment)}/>
           </StyledTableCell>
         </StyledTableRow>
       ))}

@@ -4,7 +4,7 @@ import { createIncome } from "../../api/http-utils/incomes";
 import {useTranslation} from "react-i18next";
 import {AddButton} from "../../common/components/add-button";
 
-const AddIncomeForm = ({ onSuccess }) => {
+const AddIncomeForm = ({ setIncomes, onSuccess, isGuest }) => {
   const [show, setShow] = useState(false);
   const {t} = useTranslation();
   const [values, setValues] = useState({
@@ -38,8 +38,13 @@ const AddIncomeForm = ({ onSuccess }) => {
   };
 
   const handleSubmit = async () => {
-    await createIncome(values);
-    onSuccess();
+    if (isGuest) {
+      const newIncome = { ...values, id: Math.random()}
+      setIncomes(prev => [...prev, newIncome]);
+    } else {
+      await createIncome(values);
+      onSuccess();
+    }
     handleClose();
   };
 

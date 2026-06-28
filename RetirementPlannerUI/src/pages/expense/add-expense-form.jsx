@@ -4,7 +4,7 @@ import { createExpense } from "../../api/http-utils/expenses";
 import {useTranslation} from "react-i18next";
 import {AddButton} from "../../common/components/add-button";
 
-const AddExpenseForm = ({ onSuccess }) => {
+const AddExpenseForm = ({setExpenses, onSuccess, isGuest }) => {
   const [show, setShow] = useState(false);
   const {t} = useTranslation();
   const [values, setValues] = useState({
@@ -38,8 +38,13 @@ const AddExpenseForm = ({ onSuccess }) => {
   };
 
   const handleSubmit = async () => {
-    await createExpense(values);
-    onSuccess();
+    if (isGuest) {
+      const newExpense = { ...values, id: Math.random()}
+      setExpenses(prev => [...prev, newExpense]);
+    } else {
+      await createExpense(values);
+      onSuccess();
+    }
     handleClose();
   };
 

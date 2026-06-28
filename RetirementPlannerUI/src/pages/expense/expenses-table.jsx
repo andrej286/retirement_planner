@@ -49,14 +49,18 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const ExpensesTable = ({ expenses, onSuccess }) => {
+export const ExpensesTable = ({ expenses, setExpenses, onSuccess, isGuest }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedExpense, setSelectedExpense] = useState(null);
   const {t} = useTranslation();
 
-  const handleDeleteExpense = useCallback(async (id) => {
-    await deleteExpense(id)
-    onSuccess()
+  const handleDeleteExpense = useCallback(async (expense) => {
+    if (isGuest) {
+      setExpenses(prev => prev.filter(prevItem => prevItem.id !== expense.id));
+    } else {
+      await deleteExpense(expense.id)
+      onSuccess()
+    }
   }, [onSuccess]);
 
   const handleEditExpense = (expense) => {
@@ -78,8 +82,17 @@ export const ExpensesTable = ({ expenses, onSuccess }) => {
   };
 
   const handleSubmitEditModal = async () => {
-    await updateExpense(selectedExpense.id, selectedExpense);
-    onSuccess();
+    if (isGuest) {
+      setExpenses(prevItems =>
+        prevItems.map(item =>
+          item.id === selectedExpense.id
+            ? { ...item, ...selectedExpense } // Creates a new object with updates
+            : item                              // Returns unchanged object
+        ));
+    } else {
+      await updateExpense(selectedExpense.id, selectedExpense);
+      onSuccess();
+    }
     handleCloseEditModal();
   };
 
@@ -118,7 +131,7 @@ export const ExpensesTable = ({ expenses, onSuccess }) => {
           <StyledTableCell>{expense.interestRate} %</StyledTableCell>
           <StyledTableCell>
             <EditButton onClick={() => handleEditExpense(expense)}/>
-            <DeleteButton onClick={() => handleDeleteExpense(expense.id)}/>
+            <DeleteButton onClick={() => handleDeleteExpense(expense)}/>
           </StyledTableCell>
         </StyledTableRow>
       ))}

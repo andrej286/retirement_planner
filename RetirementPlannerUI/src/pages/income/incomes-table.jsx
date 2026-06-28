@@ -49,15 +49,19 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const IncomesTable = ({ incomes, onSuccess }) => {
+export const IncomesTable = ({ incomes, setIncomes, onSuccess, isGuest }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedIncome, setSelectedIncome] = useState(null);
   const {t} = useTranslation();
 
-  const handleDeleteIncome = useCallback(async (id) => {
-    await deleteIncome(id)
-    onSuccess()
-  }, [onSuccess]);
+  const handleDeleteIncome = useCallback(async (income) => {
+    if (isGuest) {
+      setIncomes(prev => prev.filter(prevItem => prevItem.id !== income.id));
+    } else {
+      await deleteIncome(income.id);
+      onSuccess();
+    }
+  }, [onSuccess, setIncomes]);
 
   const handleEditIncome = (income) => {
     setSelectedIncome(income);
@@ -78,8 +82,17 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
   };
 
   const handleSubmitEditModal = async () => {
-    await updateIncome(selectedIncome.id, selectedIncome);
-    onSuccess();
+    if (isGuest) {
+      setIncomes( prevItems =>
+        prevItems.map(item =>
+          item.id === selectedIncome.id
+            ? { ...item, ...selectedIncome } // Creates a new object with updates
+            : item                              // Returns unchanged object
+        ));
+    } else {
+      await updateIncome(selectedIncome.id, selectedIncome);
+      onSuccess();
+    }
     handleCloseEditModal();
   };
 
@@ -118,7 +131,7 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
           <StyledTableCell>{income.interestRate} %</StyledTableCell>
           <StyledTableCell>
             <EditButton onClick={() => handleEditIncome(income)}/>
-            <DeleteButton onClick={() => handleDeleteIncome(income.id)}/>
+            <DeleteButton onClick={() => handleDeleteIncome(income)}/>
           </StyledTableCell>
         </StyledTableRow>
       ))}

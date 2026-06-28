@@ -4,7 +4,7 @@ import { createInvestment } from "../../api/http-utils/investments";
 import {useTranslation} from "react-i18next";
 import {AddButton} from "../../common/components/add-button";
 
-const AddInvestmentForm = ({ onSuccess }) => {
+const AddInvestmentForm = ({ setInvestments, onSuccess, isGuest }) => {
   const [show, setShow] = useState(false);
   const {t} = useTranslation();
   const [values, setValues] = useState({
@@ -34,8 +34,13 @@ const AddInvestmentForm = ({ onSuccess }) => {
   };
 
   const handleSubmit = async () => {
-    await createInvestment(values);
-    onSuccess();
+    if (isGuest) {
+      const newInvestment = {...values, id: Math.random()};
+      setInvestments(prev => [...prev, newInvestment]);
+    } else {
+      await createInvestment(values);
+      onSuccess();
+    }
     handleClose();
   };
 
