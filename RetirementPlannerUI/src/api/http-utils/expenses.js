@@ -1,7 +1,11 @@
 import axios from "axios";
 
-export const fetchExpenses = async () => {
-  const response = await axios.get('http://localhost:8080/api/expenses', {headers: {
+export const fetchExpenses = async (userId) => {
+  const response = await axios.get('http://localhost:8080/api/expenses', {
+    params: {
+      userId: userId
+    },
+    headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin' : '*',
       'Authorization': "Bearer " + localStorage.getItem("token")

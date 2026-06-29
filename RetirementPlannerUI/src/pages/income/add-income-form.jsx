@@ -3,6 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import { createIncome } from "../../api/http-utils/incomes";
 import {useTranslation} from "react-i18next";
 import {AddButton} from "../../common/components/add-button";
+import {createExpense} from "../../api/http-utils/expenses";
 
 const AddIncomeForm = ({ setIncomes, onSuccess, isGuest }) => {
   const [show, setShow] = useState(false);
@@ -42,7 +43,8 @@ const AddIncomeForm = ({ setIncomes, onSuccess, isGuest }) => {
       const newIncome = { ...values, id: Math.random()}
       setIncomes(prev => [...prev, newIncome]);
     } else {
-      await createIncome(values);
+      const user = JSON.parse(localStorage.getItem('user'));
+      await createIncome({ ...values, userID: user.userID });
       onSuccess();
     }
     handleClose();

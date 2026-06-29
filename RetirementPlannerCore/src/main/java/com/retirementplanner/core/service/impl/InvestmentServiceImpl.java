@@ -42,8 +42,8 @@ public class InvestmentServiceImpl implements InvestmentService {
     }
 
     @Override
-    public List<InvestmentDto> getAllInvestments() {
-        return investmentRepository.findAll().stream().map(investmentMapper::toModel).collect(Collectors.toList());
+    public List<InvestmentDto> getInvestmentsByUserId(Long userId) {
+        return investmentRepository.findInvestmentsByUserId(userId).stream().map(investmentMapper::toModel).collect(Collectors.toList());
     }
 
     @Override

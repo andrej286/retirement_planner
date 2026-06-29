@@ -42,7 +42,8 @@ const AddExpenseForm = ({setExpenses, onSuccess, isGuest }) => {
       const newExpense = { ...values, id: Math.random()}
       setExpenses(prev => [...prev, newExpense]);
     } else {
-      await createExpense(values);
+      const user = JSON.parse(localStorage.getItem('user'));
+      await createExpense({ ...values, userID: user.userID });
       onSuccess();
     }
     handleClose();

@@ -18,7 +18,7 @@ public class InvestmentEntity {
 
     private Integer duration; // in years
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

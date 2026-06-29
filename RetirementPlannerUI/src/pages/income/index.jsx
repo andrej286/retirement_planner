@@ -13,7 +13,8 @@ const Income = () => {
 
   const fetchAndSetIncomes = async () => {
     if (!isGuest) {
-      const data = await fetchIncomes();
+      const user = JSON.parse(localStorage.getItem('user'));
+      const data = await fetchIncomes(user.userID);
       setIncomes(data);
     }
   };

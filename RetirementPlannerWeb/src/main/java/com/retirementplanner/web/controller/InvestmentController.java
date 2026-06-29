@@ -34,8 +34,8 @@ public class InvestmentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<InvestmentDto>> getAllInvestments() {
-        return ResponseEntity.ok(investmentService.getAllInvestments());
+    public ResponseEntity<List<InvestmentDto>> getAllInvestments(@RequestParam Long userId) {
+        return ResponseEntity.ok(investmentService.getInvestmentsByUserId(userId));
     }
 
     @PutMapping("/{id}")

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IncomeService {
     IncomeDto saveIncome(IncomeDto income);
     IncomeDto getIncomeById(Long id);
-    List<IncomeDto> getAllIncomes();
+    List<IncomeDto> getIncomesByUserId(Long userId);
     IncomeDto updateIncome(Long id, IncomeDto income);
     void deleteIncome(Long id);
 }

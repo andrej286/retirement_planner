@@ -34,8 +34,8 @@ public class ExpenseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ExpenseDto>> getAllExpenses() {
-        return ResponseEntity.ok(expenseService.getAllExpenses());
+    public ResponseEntity<List<ExpenseDto>> getAllExpenses(@RequestParam Long userId) {
+        return ResponseEntity.ok(expenseService.getExpensesByUserId(userId));
     }
 
     @PutMapping("/{id}")

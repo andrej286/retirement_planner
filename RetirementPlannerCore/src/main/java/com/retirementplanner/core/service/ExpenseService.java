@@ -7,7 +7,7 @@ import java.util.List;
 public interface ExpenseService {
     ExpenseDto saveExpense(ExpenseDto expense);
     ExpenseDto getExpenseById(Long id);
-    List<ExpenseDto> getAllExpenses();
+    List<ExpenseDto> getExpensesByUserId(Long userId);
     ExpenseDto updateExpense(Long id, ExpenseDto expense);
     void deleteExpense(Long id);
 }

@@ -34,8 +34,8 @@ public class IncomeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<IncomeDto>> getAllIncomes() {
-        return ResponseEntity.ok(incomeService.getAllIncomes());
+    public ResponseEntity<List<IncomeDto>> getAllIncomes(@RequestParam Long userId) {
+        return ResponseEntity.ok(incomeService.getIncomesByUserId(userId));
     }
 
     @PutMapping("/{id}")

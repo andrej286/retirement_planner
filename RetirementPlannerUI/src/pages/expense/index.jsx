@@ -13,7 +13,8 @@ const Expense = () => {
 
   const fetchAndSetExpenses = async () => {
     if (!isGuest) {
-      const data = await fetchExpenses();
+      const user = JSON.parse(localStorage.getItem('user'));
+      const data = await fetchExpenses(user.userID);
 
       setExpenses(data);
     }

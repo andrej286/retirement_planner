@@ -42,8 +42,8 @@ public class IncomeServiceImpl implements IncomeService {
     }
 
     @Override
-    public List<IncomeDto> getAllIncomes() {
-        return incomeRepository.findAll().stream().map(incomeMapper::toModel).collect(Collectors.toList());
+    public List<IncomeDto> getIncomesByUserId(Long userId) {
+        return incomeRepository.findIncomesByUserId(userId).stream().map(incomeMapper::toModel).collect(Collectors.toList());
     }
 
     @Override

@@ -38,7 +38,8 @@ const AddInvestmentForm = ({ setInvestments, onSuccess, isGuest }) => {
       const newInvestment = {...values, id: Math.random()};
       setInvestments(prev => [...prev, newInvestment]);
     } else {
-      await createInvestment(values);
+      const user = JSON.parse(localStorage.getItem('user'));
+      await createInvestment({ ...values, userID: user.userID });
       onSuccess();
     }
     handleClose();

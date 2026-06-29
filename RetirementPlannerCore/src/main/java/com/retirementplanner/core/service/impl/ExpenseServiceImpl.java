@@ -42,8 +42,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<ExpenseDto> getAllExpenses() {
-        return expenseRepository.findAll().stream().map(expenseMapper::toModel).collect(Collectors.toList());
+    public List<ExpenseDto> getExpensesByUserId(Long userId) {
+        return expenseRepository.findExpensesByUserId(userId).stream().map(expenseMapper::toModel).collect(Collectors.toList());
     }
 
     @Override

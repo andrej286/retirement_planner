@@ -13,7 +13,8 @@ const Investment = () => {
 
   const fetchAndSetInvestments = async () => {
     if (!isGuest) {
-      const data = await fetchInvestments();
+      const user = JSON.parse(localStorage.getItem('user'));
+      const data = await fetchInvestments(user.userID);
       setInvestments(data);
     }
   };
